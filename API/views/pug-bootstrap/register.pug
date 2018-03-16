@@ -1,0 +1,36 @@
+extends starter
+append styles
+    // Custom styles for this template
+    link(href='/stylesheets/signin.css', rel='stylesheet')
+append body
+    .container       
+        form.form-signin(role='form',action="/register", method="post")
+            h2.form-signin-heading Please register!
+            p.form-signin-label First name:
+            label.sr-only(for='first_name') First name
+            input#first_name.form-control(name='first_name', type='text', placeholder='first name', required='', autofocus='')
+            p.form-signin-label Last name:
+            label.sr-only(for='last_name') Last name
+            input#last_name.form-control(name='last_name', type='text', placeholder='last name', required='', autofocus='')
+            p.form-signin-label City:
+            label.sr-only(for='city') City
+            input#city.form-control(name='city', type='text', placeholder='city', required='', autofocus='')
+            p.form-signin-label Zip Code:
+            label.sr-only(for='zip_code') Zip Code
+            input#zip_code.form-control(name='zip_code', type='text', placeholder='zip code', required='', autofocus='')
+            p.form-signin-label Address:
+            label.sr-only(for='address') Address
+            input#address.form-control(name='address', type='text', placeholder='address', required='', autofocus='')
+            p.form-signin-label Telephone:
+            label.sr-only(for='telephone') Telephone
+            input#telephone.form-control(name='telephone', type='text', placeholder='telephone', required='', autofocus='')
+            p.form-signin-label Login data:
+            label.sr-only(for='username') Username
+            input#username.form-control(name='username', type='text', placeholder='username', required='', autofocus='')
+            label.sr-only(for='password') Password
+            input#password.form-control(name='password',type='password', placeholder='password', required='')
+            .checkbox
+                label
+                    input(type='checkbox', value='remember-me')
+                    |  Remember me
+            button.btn.btn-lg.btn-primary.btn-block(type='submit') Register
