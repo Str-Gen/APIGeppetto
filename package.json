@@ -2,7 +2,9 @@
   "name": "api-geppetto",
   "version": "0.0.1",
   "description": "API for the Geppetto app, based on es6-express-mongoose-passport-rest-api",
-  "keywords": ["event live scheduling"],
+  "keywords": [
+    "event live scheduling"
+  ],
   "author": "Laurens D'hooge <laurens.dhooge@telenet.be>",
   "main": "./src/index.js",
   "private": false,
@@ -12,13 +14,11 @@
     "yarn": ">=0.17.9"
   },
   "scripts": {
-    "dev":
-      "NODE_ENV=development nodemon -w src --exec \"babel-node src --plugins add-module-exports --presets es2015,stage-0,stage-2\"",
+    "dev": "NODE_ENV=development nodemon -w src --exec \"babel-node src --plugins add-module-exports --presets es2015,stage-0,stage-2\"",
     "build": "babel src -s -D -d dist --plugins add-module-exports --presets es2015,stage-0,stage-2",
     "start": "node dist",
     "prestart": "npm run -s build",
-    "prettier":
-      "prettier --semi false --print-width 120 --single-quote --trailing-comma all --write \"{src,__{tests,mocks}__}/**/*.js\"",
+    "prettier": "prettier --semi false --print-width 120 --single-quote --trailing-comma all --write \"{src,__{tests,mocks}__}/**/*.js\"",
     "test": "jest",
     "test:coverage": "jest --coverage",
     "prepush": "yarn test",
@@ -48,6 +48,7 @@
     "passport": "^0.3.2",
     "passport-local": "^1.0.0",
     "passport-local-mongoose": "^4.0.0",
+    "pluralize": "7.0.0",
     "winston": "2.3.0"
   },
   "devDependencies": {
@@ -63,18 +64,30 @@
     "nodemon": "^1.11.0",
     "prettier": "1.1.0",
     "supertest": "2.0.1"
-  },  
+  },
   "babel": {
-    "presets": ["es2015", "stage-0", "stage-2"],
-    "plugins": ["add-module-exports"]
+    "presets": [
+      "es2015",
+      "stage-0",
+      "stage-2"
+    ],
+    "plugins": [
+      "add-module-exports"
+    ]
   },
   "jest": {
     "verbose": true,
-    "testPathIgnorePatterns": ["/node_modules/", "/dist/"],
+    "testPathIgnorePatterns": [
+      "/node_modules/",
+      "/dist/"
+    ],
     "testRegex": "(/__tests__/.*|(\\.|/)(spec))\\.jsx?$"
   },
   "lint-staged": {
-    "*.js": ["prettier --semi false --print-width 120 --single-quote --trailing-comma all --write", "git add"]
+    "*.js": [
+      "prettier --semi false --print-width 120 --single-quote --trailing-comma all --write",
+      "git add"
+    ]
   },
   "bugs": {
     "url": "https://github.com/Str-Gen/APIGeppetto/issues"
