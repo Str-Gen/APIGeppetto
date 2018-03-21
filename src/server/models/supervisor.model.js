@@ -2,6 +2,7 @@ import mongoose from 'mongoose'
 import passportLocalMongoose from 'passport-local-mongoose'
 
 var SupervisorSchema = new mongoose.Schema({
+  email: { type: String, unique: true },
   firstname: { type: String },
   lastname: { type: String },
   current_event: mongoose.Schema.Types.ObjectId,
@@ -9,9 +10,9 @@ var SupervisorSchema = new mongoose.Schema({
   telephone: { type: String },
   principal_focus: { type: String },
   teammembers: { type: [mongoose.Schema.Types.ObjectId] },
-  created_at: { type: Date, required: false, default: Date.now },
+  created_at: { type: Date, default: Date.now },
 })
 
-SupervisorSchema.plugin(passportLocalMongoose)
+SupervisorSchema.plugin(passportLocalMongoose, { usernameField: 'email' })
 
 export default mongoose.model('Supervisor', SupervisorSchema)

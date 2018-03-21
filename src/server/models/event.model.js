@@ -12,6 +12,7 @@ const Task = new mongoose.Schema({
   time_real: { type: String },
   supervisor_id: { type: mongoose.Schema.Types.ObjectId },
   location: { type: SiteTypes.SubsiteModel },
+  created_at: { type: Date, default: Date.now },
 })
 
 const TaskModel = mongoose.model('Task', Task)
@@ -20,6 +21,7 @@ const LiveEvent = new mongoose.Schema({
   event_name: { type: String },
   task_collection: { type: [Task] },
   location: { type: SiteTypes.SiteModel },
+  created_at: { type: Date, default: Date.now },
 })
 
 const LiveEventModel = mongoose.model('LiveEvent', LiveEvent)

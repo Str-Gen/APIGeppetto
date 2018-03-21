@@ -1,9 +1,9 @@
-import express from 'expess'
+import express from 'express'
 import pluralize from 'pluralize'
 import { ok, fail } from './utils'
 
 const MAX_RESULTS = 100
-var router = express.Router()
+const router = express.Router()
 
 export default class BaseController {
   constructor(model, key) {
