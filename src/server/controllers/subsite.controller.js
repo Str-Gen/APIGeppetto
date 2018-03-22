@@ -3,6 +3,6 @@ import { SubsiteModel } from '../models/site.model'
 
 export default class SubsiteController extends BaseController {
   constructor() {
-    super(SubsiteModel, '_id')
+    super(SubsiteModel, 'subsite_name')
   }
 }

@@ -8,7 +8,16 @@ export default class BaseController {
     this.key = key
   }
 
-  create(req, res, next) {
+  /**
+     * syntax like 
+     * create(req,res,this) {
+     *   console.log(this)
+     * }
+     * will print 'undefined', that's because this isn't passed into the function if you write it like this
+     * The ES6 syntax create = (...) => will pass this !
+     */
+  create = (req, res, next) => {
+    //        console.log("This = " + this)
     return this.model
       .create(req.body)
       .then(modelInstance => {
