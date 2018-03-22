@@ -9,14 +9,14 @@ const CoordinateModel = mongoose.model('Coordinate', Coordinate)
 
 const SubSite = new mongoose.Schema({
   subsite_name: { type: String },
-  edge_points: { type: [CoordinateModel] },
+  edge_points: { type: [Coordinate] },
 })
 
 const SubsiteModel = mongoose.model('SubSite', SubSite)
 
 const Site = new mongoose.Schema({
   site_name: { type: String },
-  subsites: { type: [SubSiteModel] },
+  subsites: { type: [SubSite] },
 })
 
 const SiteModel = mongoose.model('Site', Site)
