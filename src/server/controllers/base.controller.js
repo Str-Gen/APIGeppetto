@@ -1,5 +1,8 @@
 import APIError from '../helpers/APIError'
 import httpStatus from 'http-status'
+import pluralize from 'pluralize'
+
+const MAX_RESULTS = 100
 
 export default class BaseController {
   constructor(model, key) {
@@ -27,6 +30,25 @@ export default class BaseController {
           return response
         }
         const err = new APIError('No such ' + this.modelName + ' exists!', httpStatus.NOT_FOUND)
+        return Promise.reject(err)
+      })
+      .then(resp => {
+        res.json(resp)
+      })
+      .catch(e => next(e))
+  }
+
+  list = (req, res, next) => {
+    return this.model
+      .find({})
+      .limit(MAX_RESULTS)
+      .then(modelInstances => {
+        if (modelInstances) {
+          var response = {}
+          response[pluralize(this.modelName)] = modelInstances
+          return response
+        }
+        const err = new APIError('No ' + this.modelName + ' exist!', httpStatus.NOT_FOUND)
         return Promise.reject(err)
       })
       .then(resp => {
