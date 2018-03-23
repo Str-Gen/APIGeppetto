@@ -38,6 +38,27 @@ export default class BaseController {
       .catch(e => next(e))
   }
 
+  delete = (req, res, next) => {
+    const filter = {}
+    filter[this.key] = req.params.key
+    console.log(req.params)
+    return this.model
+      .remove(filter)
+      .then(deletedInstance => {
+        if (deletedInstance) {
+          var response = {}
+          response[this.modelName] = deletedInstance
+          return response
+        }
+        const err = new APIError('No such ' + this.modelName + ' deleted based on filter!', httpStatus.NOT_FOUND)
+        return Promise.reject(err)
+      })
+      .then(resp => {
+        res.json(resp)
+      })
+      .catch(e => next(e))
+  }
+
   list = (req, res, next) => {
     return this.model
       .find({})
