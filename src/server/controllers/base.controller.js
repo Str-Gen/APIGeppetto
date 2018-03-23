@@ -23,10 +23,10 @@ export default class BaseController {
     //        console.log("This = " + this)
     return this.model
       .create(req.body)
-      .then(modelInstance => {
-        if (modelInstance) {
+      .then(createdInstance => {
+        if (createdInstance) {
           var response = {}
-          response[this.modelName] = modelInstance
+          response[this.modelName] = createdInstance
           return response
         }
         const err = new APIError('No such ' + this.modelName + ' exists!', httpStatus.NOT_FOUND)
@@ -40,8 +40,8 @@ export default class BaseController {
 
   delete = (req, res, next) => {
     const filter = {}
+    // this key in params.key is important, it is called key in subsite.route.js, so don't change that
     filter[this.key] = req.params.key
-    console.log(req.params)
     return this.model
       .remove(filter)
       .then(deletedInstance => {
@@ -51,6 +51,26 @@ export default class BaseController {
           return response
         }
         const err = new APIError('No such ' + this.modelName + ' deleted based on filter!', httpStatus.NOT_FOUND)
+        return Promise.reject(err)
+      })
+      .then(resp => {
+        res.json(resp)
+      })
+      .catch(e => next(e))
+  }
+
+  read = (req, res, next) => {
+    const filter = {}
+    filter[this.key] = req.params.key
+    return this.model
+      .findOne(filter)
+      .then(foundInstance => {
+        if (foundInstance) {
+          var response = {}
+          response[this.modelName] = foundInstance
+          return response
+        }
+        const err = new APIError('No such ' + this.modelName + ' found based on filter!', httpStatus.NOT_FOUND)
         return Promise.reject(err)
       })
       .then(resp => {

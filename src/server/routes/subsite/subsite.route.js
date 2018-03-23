@@ -6,6 +6,6 @@ const controller = new SubsiteController()
 
 router.route('/').get(controller.list).post(controller.create)
 
-router.route('/:key').delete(controller.delete)
+router.route('/:key').get(controller.read).delete(controller.delete)
 
 export default router
