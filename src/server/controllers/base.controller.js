@@ -79,6 +79,40 @@ export default class BaseController {
       .catch(e => next(e))
   }
 
+  update = (req, res, next) => {
+    const filter = {}
+    filter[this.key] = req.params.key
+    return this.model
+      .findOne(filter)
+      .then(foundInstance => {
+        if (foundInstance) {
+          const updateProperties = req.body
+          for (var attribute in updateProperties) {
+            // currently any tried update to the property of the object that is used as key will be silently ignored, this might not be wanted
+            if (updateProperties.hasOwnProperty(attribute) && attribute !== this.key && attribute !== '_id') {
+              foundInstance[attribute] = updateProperties[attribute]
+            }
+          }
+          return foundInstance.save()
+        }
+        const err = new APIError('No such ' + this.modelName + 'to update based on filter!', httpStatus.NOT_FOUND)
+        return Promise.reject(err)
+      })
+      .then(updatedInstance => {
+        if (updatedInstance) {
+          var response = {}
+          response[this.modelName] = updatedInstance
+          return response
+        }
+        const err = new APIError('No such ' + this.modelName + 'updated based on filter!', httpStatus.NOT_FOUND)
+        return Promise.reject(err)
+      })
+      .then(resp => {
+        res.json(resp)
+      })
+      .catch(e => next(e))
+  }
+
   list = (req, res, next) => {
     return this.model
       .find({})
@@ -89,7 +123,7 @@ export default class BaseController {
           response[pluralize(this.modelName)] = modelInstances
           return response
         }
-        const err = new APIError('No ' + this.modelName + ' exist!', httpStatus.NOT_FOUND)
+        const err = new APIError('No ' + pluralize(this.modelName) + ' exist!', httpStatus.NOT_FOUND)
         return Promise.reject(err)
       })
       .then(resp => {
