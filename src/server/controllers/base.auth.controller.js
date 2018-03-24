@@ -51,6 +51,8 @@ export default class BaseAuthController {
      * @returns {*}
      */
   me = (req, res, next) => {
+    console.log('REQ USER !$!')
+    console.log(req.user)
     if (!req.user) {
       const error = new APIError('Authentication error', httpStatus.UNAUTHORIZED)
       next(error)
