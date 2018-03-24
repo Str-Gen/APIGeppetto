@@ -1,8 +1,9 @@
 import httpStatus from 'http-status'
 import passport from 'passport'
 import APIError from '../helpers/APIError'
-import Wrkr from '../models/worker.model'
 import User from '../models/user.model'
+import Wrkr from '../models/worker.model'
+import Supervisor from '../models/supervisor.model'
 
 /**
  * Returns passport login response (cookie) when valid username and password is provided
@@ -23,6 +24,7 @@ function login(req, res) {
  */
 function register(req, res, next) {
   console.log(req.body)
+
   Wrkr.register(new Wrkr({ email: req.body.email }), req.body.password, (err, user) => {
     if (err) {
       console.log(err)
