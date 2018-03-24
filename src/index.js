@@ -3,7 +3,7 @@ import util from 'util'
 import config from './config/env'
 import app from './config/express'
 
-const debug = require('debug')('homein-api:index')
+const debug = require('debug')('geppetto-api:index')
 
 // plugin native promise in mongoose
 mongoose.Promise = global.Promise
