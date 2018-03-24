@@ -52,9 +52,9 @@ passport.use(Wrkr.createStrategy())
 passport.serializeUser(Wrkr.serializeUser())
 passport.deserializeUser(Wrkr.deserializeUser())
 
-passport.use(Supervisor.createStrategy())
-passport.serializeUser(Supervisor.serializeUser())
-passport.deserializeUser(Supervisor.deserializeUser())
+//passport.use(Supervisor.createStrategy())
+//passport.serializeUser(Supervisor.serializeUser())
+//passport.deserializeUser(Supervisor.deserializeUser())
 
 // secure apps by setting various HTTP headers
 app.use(helmet())

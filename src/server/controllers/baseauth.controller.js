@@ -26,17 +26,17 @@ export default class BaseAuthController {
      */
   register = (req, res, next) => {
     console.log(req.body)
-    const ex = this.model.create(req.body).then(x => console.log(x)).catch(e => next(e))
-    console.log(ex)
-    this.model.register(this.model.create({ email: req.body.email }), req.body.password, (err, user) => {
+    this.model.register(new this.model({ email: req.body.email }), req.body.password, (err, user) => {
       if (err) {
-        console.log(err)
-        console.log(user)
         const error = new APIError('Authentication error', httpStatus.UNAUTHORIZED)
         next(error)
       }
 
+      console.log(err)
+      console.log(user)
+
       passport.authenticate('local')(req, res, () => {
+        console.log(req)
         console.log(user)
         res.json({ user })
       })
