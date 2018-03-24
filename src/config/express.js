@@ -16,6 +16,7 @@ import routes from '../server/routes/index.route'
 import config from './env'
 import APIError from '../server/helpers/APIError'
 import User from '../server/models/user.model'
+import Wrkr from '../server/models/worker.model'
 
 const app = express()
 
@@ -45,6 +46,10 @@ app.use(passport.session())
 passport.use(User.createStrategy())
 passport.serializeUser(User.serializeUser())
 passport.deserializeUser(User.deserializeUser())
+
+passport.use(Wrkr.createStrategy())
+passport.serializeUser(Wrkr.serializeUser())
+passport.deserializeUser(Wrkr.deserializeUser())
 
 // secure apps by setting various HTTP headers
 app.use(helmet())

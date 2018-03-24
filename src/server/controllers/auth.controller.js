@@ -1,6 +1,7 @@
 import httpStatus from 'http-status'
 import passport from 'passport'
 import APIError from '../helpers/APIError'
+import Wrkr from '../models/worker.model'
 import User from '../models/user.model'
 
 /**
@@ -21,13 +22,17 @@ function login(req, res) {
  * @returns {*}
  */
 function register(req, res, next) {
-  User.register(new User({ email: req.body.email }), req.body.password, (err, user) => {
+  console.log(req.body)
+  Wrkr.register(new Wrkr({ email: req.body.email }), req.body.password, (err, user) => {
     if (err) {
+      console.log(err)
+      console.log(user)
       const error = new APIError('Authentication error', httpStatus.UNAUTHORIZED)
       next(error)
     }
 
     passport.authenticate('local')(req, res, () => {
+      console.log(user)
       res.json({ user })
     })
   })

@@ -14,4 +14,4 @@ var WorkerSchema = new mongoose.Schema({
 
 WorkerSchema.plugin(passportLocalMongoose, { usernameField: 'email' })
 
-export default mongoose.model('Worker', WorkerSchema)
+export default mongoose.model('Wrkr', WorkerSchema)
