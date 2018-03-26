@@ -6,6 +6,8 @@ import siteRoutes from './site/site.route'
 import taskRoutes from './task/task.route'
 import liveeventRoutes from './liveevent/liveevent.route'
 import workerstatusRoutes from './workerstatus/workerstatus.route'
+import workerRoutes from './worker/worker.route'
+import supervisorRoutes from './supervisor/supervisor.route'
 
 const router = express.Router() // eslint-disable-line new-cap
 
@@ -20,5 +22,7 @@ router.use('/sites', siteRoutes)
 router.use('/tasks', taskRoutes)
 router.use('/liveevents', liveeventRoutes)
 router.use('/workerstatus', workerstatusRoutes)
+router.use('/workers', workerRoutes)
+router.use('/supervisors', supervisorRoutes)
 
 export default router
