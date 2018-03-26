@@ -1,5 +1,5 @@
-import BaseController from './base.controller'
-import { LiveEventModel } from '../models/event.model'
+import BaseController from '../base.controller'
+import { LiveEventModel } from '../../models/event.model'
 
 export default class LiveEventController extends BaseController {
   constructor() {

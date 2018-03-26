@@ -2,8 +2,8 @@ import express from 'express'
 import validate from 'express-validation'
 import passport from 'passport'
 import paramValidation from './auth.validations'
-import WorkerAuthController from '../../controllers/worker.auth.controller'
-import SupervisorAuthController from '../../controllers/supervisor.auth.controller'
+import WorkerAuthController from '../../controllers/auth/worker.auth.controller'
+import SupervisorAuthController from '../../controllers/auth/supervisor.auth.controller'
 
 const router = express.Router() // eslint-disable-line new-cap
 

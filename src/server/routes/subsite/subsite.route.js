@@ -1,4 +1,4 @@
-import SubsiteController from '../../controllers/subsite.controller'
+import SubsiteController from '../../controllers/CRUD/subsite.controller'
 import express from 'express'
 
 const router = express.Router()

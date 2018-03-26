@@ -1,4 +1,4 @@
-import TaskController from '../../controllers/task.controller'
+import TaskController from '../../controllers/CRUD/task.controller'
 import express from 'express'
 
 const router = express.Router()

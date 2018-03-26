@@ -1,4 +1,4 @@
-import WorkerStatusController from '../../controllers/workerstatus.controller'
+import WorkerStatusController from '../../controllers/CRUD/workerstatus.controller'
 import express from 'express'
 
 const router = express.Router()

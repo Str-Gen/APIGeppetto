@@ -1,5 +1,5 @@
-import BaseController from './base.controller'
-import { SiteModel } from '../models/site.model'
+import BaseController from '../base.controller'
+import { SiteModel } from '../../models/site.model'
 
 export default class SiteController extends BaseController {
   constructor() {

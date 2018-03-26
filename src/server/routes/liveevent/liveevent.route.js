@@ -1,4 +1,4 @@
-import LiveEventController from '../../controllers/liveevent.controller'
+import LiveEventController from '../../controllers/CRUD/liveevent.controller'
 import express from 'express'
 
 const router = express.Router()

@@ -1,4 +1,4 @@
-import SiteController from '../../controllers/site.controller'
+import SiteController from '../../controllers/CRUD/site.controller'
 import express from 'express'
 
 const router = express.Router()
