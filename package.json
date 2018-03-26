@@ -1,6 +1,6 @@
 {
   "name": "api-geppetto",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "API for the Geppetto app, based on es6-express-mongoose-passport-rest-api",
   "keywords": [
     "event live scheduling"
