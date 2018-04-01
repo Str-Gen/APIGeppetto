@@ -1,4 +1,33 @@
-# Node boilerplate
+# How does the API work
+
+## src/server/controllers/
+
+Holds the controllers, the base controller does the database interaction. All CRUD controllers inherit from this base controller. Database operations are fully promisified.
+
+## src/server/models/
+
+Holds the MongoDB schemas and exports the models.
+
+## src/server/routes/
+
+This folder contains an index file which is a grouping of the individual routes. Consider this example from task.route.js:
+
+```javascript
+router.route('/').get(controller.list).post(controller.create)
+
+router.route('/:key').get(controller.read).delete(controller.delete).put(controller.update)
+```
+
+The API provides GET and POST endpoints in on localhost:4040/api/tasks/ (dev environment). Those routes correspond to list and create operations.
+
+The API also provides GET, DELETE and PUT endpoints based on the key, the key for a type can be found as the second argument of its respective controller file. Most often it is the name, though a switch to an ID-based system is still open for discussion. These routes correspond to the read (= retrieve 1), delete and update operations for the item.
+
+These API endpoints hold true for the CRUD types. 
+
+Types that require authentication like Worker and Supervisor have different behavior and additional routes to accomodate their needs.
+
+
+# Built on node boilerplate with with the addition of generic DAO
 
 This is my node boilerplate starter kit. I will continue to update with the latest tech to help make make node services
 super easy and efficient to kick start.
