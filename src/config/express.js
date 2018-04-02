@@ -15,7 +15,6 @@ import winstonInstance from './winston'
 import routes from '../server/routes/index.route'
 import config from './env'
 import APIError from '../server/helpers/APIError'
-import User from '../server/models/user.model'
 import Wrkr from '../server/models/worker.model'
 import Supervisor from '../server/models/supervisor.model'
 
@@ -44,9 +43,6 @@ app.use(passport.initialize())
 app.use(passport.session())
 
 // configure passport for Auth
-passport.use(User.createStrategy())
-passport.serializeUser(User.serializeUser())
-passport.deserializeUser(User.deserializeUser())
 
 passport.use(Wrkr.createStrategy())
 passport.serializeUser(Wrkr.serializeUser())

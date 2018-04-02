@@ -14,6 +14,8 @@ export default class BaseAuthController {
      * @returns {*}
      */
   login = (req, res) => {
+    console.log('LOGGED LOGIN REQUEST')
+    console.log(req)
     return res.json(req.user)
   }
 
@@ -28,6 +30,7 @@ export default class BaseAuthController {
     console.log(req.body)
     this.model.register(new this.model({ email: req.body.email }), req.body.password, (err, user) => {
       if (err) {
+        console.log('HIT THE FIRST ERROR ON THE REGISTRATION!')
         const error = new APIError('Authentication error', httpStatus.UNAUTHORIZED)
         next(error)
       }
