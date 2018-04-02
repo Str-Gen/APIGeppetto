@@ -44,11 +44,11 @@ app.use(passport.session())
 
 // configure passport for Auth
 
-passport.use(Wrkr.createStrategy())
+passport.use('local-worker', Wrkr.createStrategy())
 passport.serializeUser(Wrkr.serializeUser())
 passport.deserializeUser(Wrkr.deserializeUser())
 
-passport.use(Supervisor.createStrategy())
+passport.use('local-supervisor', Supervisor.createStrategy())
 passport.serializeUser(Supervisor.serializeUser())
 passport.deserializeUser(Supervisor.deserializeUser())
 

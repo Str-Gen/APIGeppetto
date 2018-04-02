@@ -3,9 +3,10 @@ import passport from 'passport'
 import APIError from '../helpers/APIError'
 
 export default class BaseAuthController {
-  constructor(model) {
+  constructor(model, strategy) {
     this.model = model
     this.modelName = model.modelName.toLowerCase()
+    this.strategy = strategy
   }
   /**
      * Returns passport login response (cookie) when valid username and password is provided
@@ -35,12 +36,12 @@ export default class BaseAuthController {
         next(error)
       }
 
+      console.log('SHOWING err')
       console.log(err)
-      console.log(user)
 
-      passport.authenticate('local')(req, res, () => {
-        console.log(req)
-        console.log(user)
+      passport.authenticate(this.strategy)(req, res, () => {
+        console.log('HIT THE PASSPORT.AUTHENTICATE')
+        console.log(req.body)
         res.json({ user })
       })
     })

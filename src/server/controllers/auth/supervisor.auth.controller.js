@@ -3,6 +3,6 @@ import Supervisor from '../../models/supervisor.model'
 
 export default class SupervisorAuthController extends BaseAuthController {
   constructor() {
-    super(Supervisor)
+    super(Supervisor, 'local-supervisor')
   }
 }
