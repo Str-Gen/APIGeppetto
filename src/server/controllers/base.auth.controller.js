@@ -16,7 +16,7 @@ export default class BaseAuthController {
      */
   login = (req, res) => {
     console.log('LOGGED LOGIN REQUEST')
-    console.log(req)
+    console.log(req.user)
     return res.json(req.user)
   }
 

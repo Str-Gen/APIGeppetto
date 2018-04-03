@@ -104,6 +104,14 @@ if (config.env !== 'test') {
   )
 }
 
+// CORS
+app.use((err, req, res, next) => {
+  // this won't stay *
+  res.header('Access-Control-Allow-Origin', '*')
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept')
+  next()
+})
+
 // error handler, send stacktrace only during development
 app.use((err, req, res, next) =>
   res.status(err.status).json({
