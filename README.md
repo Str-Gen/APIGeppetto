@@ -18,9 +18,9 @@ router.route('/').get(controller.list).post(controller.create)
 router.route('/:key').get(controller.read).delete(controller.delete).put(controller.update)
 ```
 
-The API provides GET and POST endpoints in on localhost:4040/api/tasks/ (dev environment). Those routes correspond to list and create operations.
+The API provides GET and POST endpoints for instance for Tasks on localhost:4040/api/tasks/ (dev environment). Those routes correspond to the list and create operations.
 
-The API also provides GET, DELETE and PUT endpoints based on the key, the key for a type can be found as the second argument of its respective controller file. Most often it is the name, though a switch to an ID-based system is still open for discussion. These routes correspond to the read (= retrieve 1), delete and update operations for the item.
+The API also provides GET, DELETE and PUT endpoints indexed on a key. The key for a type can be found as the second argument of the constructor in its respective controller file (e.g. TaskController constructor 2nd argument) . Most often it is the name, though a switch to an ID-based system is still open for discussion. These routes correspond to the read (= retrieve 1), delete and update operations for the item.
 
 These API endpoints hold true for the CRUD types. 
 
