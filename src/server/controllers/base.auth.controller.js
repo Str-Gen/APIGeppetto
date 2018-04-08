@@ -1,6 +1,7 @@
 import httpStatus from 'http-status'
 import passport from 'passport'
 import APIError from '../helpers/APIError'
+import { WorkerStatusModel } from '../models/workerstatus.model'
 
 export default class BaseAuthController {
   constructor(model, strategy) {
@@ -39,6 +40,21 @@ export default class BaseAuthController {
       console.log('SHOWING err')
       console.log(err)
 
+      console.log('CREATING USER-STATUS IN DB')
+      console.log(user.id)
+
+      WorkerStatusModel.create({
+        _worker_id: user.id,
+        skillset: [],
+        available: false,
+      })
+        .then(createdInstance => {
+          console.log(createdInstance)
+        })
+        .catch(e => {
+          console.log(e.messages)
+        })
+
       passport.authenticate(this.strategy)(req, res, () => {
         console.log('HIT THE PASSPORT.AUTHENTICATE')
         console.log(req.body)
@@ -73,6 +89,7 @@ export default class BaseAuthController {
      * @returns {*}
      */
   checkAuth = (req, res, next) => {
+    console.log('Called checkAuth with user', req.user)
     if (!req.user) {
       const error = new APIError('Authentication error', httpStatus.UNAUTHORIZED)
       next(error)
