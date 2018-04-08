@@ -51,7 +51,13 @@ super easy and efficient to kick start.
 Install [mongodb](https://www.mongodb.com/download-center?jmp=nav#community) and fire up the server
 
 ```
-mongod
+# mongod
+
+or via systemd, service might also be called mongod instead of mongodb
+
+# systemctl start mongodb
+
+
 ```
 
 Install [`yarn`](https://www.npmjs.com/package/yarn). Not used yarn yet? Do its awesome... and required
@@ -63,7 +69,7 @@ npm install -g yarn
 Pull down the repository
 
 ```
-git clone https://github.com/tutts/node-es6-express-mongoose-passport
+git clone https://github.com/Str-Gen/APIGeppetto.git
 ```
 
 Run yarn in the root of your project to install its dependencies
@@ -74,7 +80,7 @@ yarn
 
 ### Server
 
-Start in development mode http://localhost:4040/health-check
+Start in development mode http://localhost:4040/api/health-check
 
 ```
 yarn dev
@@ -86,7 +92,7 @@ Build the distributable
 yarn build
 ```
 
-Build the distributable + start node server http://localhost:8080/health-check
+Build the distributable + start node server http://localhost:8080/api/health-check
 
 ```
 yarn start
